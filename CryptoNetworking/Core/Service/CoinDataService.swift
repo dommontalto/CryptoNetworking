@@ -11,15 +11,40 @@ class CoinDataService {
     
     private let urlString = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=20&page=1&sparkline=false&price_change_percentage=24h&locale=en"
     
-    func fetchCoins(completion: @escaping ([Coin]) -> Void) {
+    // NEW
+    func fetchCoinsWithResult(completion: @escaping (Result<[Coin], Error>) -> Void) {
         guard let url = URL(string: urlString) else { return }
         
         URLSession.shared.dataTask(with: url) { data, response, error in
+            if let error {
+                completion(.failure(error))
+                return
+            }
+            
             guard let data else { return }
            
             guard let coins = try? JSONDecoder().decode([Coin].self, from: data) else { return }
             
-            completion(coins)
+            completion(.success(coins))
+            
+        }.resume()
+    }
+    
+    // OLD
+    func fetchCoins(completion: @escaping ([Coin]?, Error?) -> Void) {
+        guard let url = URL(string: urlString) else { return }
+        
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            if let error {
+                completion(nil, error)
+                return
+            }
+            
+            guard let data else { return }
+           
+            guard let coins = try? JSONDecoder().decode([Coin].self, from: data) else { return }
+            
+            completion(coins, nil)
             
         }.resume()
     }
