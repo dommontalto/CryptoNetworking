@@ -19,8 +19,9 @@ class CoinsViewModel: ObservableObject {
     
     // NEW
     func fetchCoinsWithResult() {
-        service.fetchCoinsWithResult { result in
+        service.fetchCoinsWithResult { [weak self] result in
             DispatchQueue.main.async {
+                guard let self else { return }
                 switch result {
                 case .success(let coins):
                     self.coins = coins
