@@ -14,11 +14,16 @@ class CoinsViewModel: ObservableObject {
     private let service = CoinDataService()
     
     init() {
-        fetchCoinsWithResult()
+        Task { try await fetchCoins() }
     }
     
     // NEW
-    func fetchCoinsWithResult() {
+    func fetchCoins() async throws {
+        self.coins = try await service.fetchCoins()
+    }
+    
+    // SLIGHTLY OLD
+    func fetchCoinsWithCompletionHandler() {
         service.fetchCoinsWithResult { [weak self] result in
             DispatchQueue.main.async {
                 guard let self else { return }
@@ -28,19 +33,6 @@ class CoinsViewModel: ObservableObject {
                 case .failure(let error):
                     self.errorMessage = error.localizedDescription
                 }
-            }
-        }
-    }
-    
-    // OLD
-    func fetchCoins() {
-        service.fetchCoins { coins, error in
-            DispatchQueue.main.async {
-                if let error {
-                    self.errorMessage = error.localizedDescription
-                    return
-                }
-                self.coins = coins ?? []
             }
         }
     }
