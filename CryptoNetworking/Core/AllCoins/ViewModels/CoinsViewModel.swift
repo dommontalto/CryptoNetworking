@@ -17,7 +17,6 @@ class CoinsViewModel: ObservableObject {
         Task { await fetchCoins() }
     }
     
-    // NEW
     @MainActor
     func fetchCoins() async {
         do {
