@@ -17,8 +17,8 @@ public struct CoinDetailsView: View {
     }
     
     public var body: some View {
-        if let details = viewModel.coinDetails {
-            VStack(alignment: .leading) {
+        VStack(alignment: .leading) {
+            if let details = viewModel.coinDetails {
                 Text(details.name)
                     .fontWeight(.semibold)
                     .font(.subheadline)
@@ -30,10 +30,14 @@ public struct CoinDetailsView: View {
                     .font(.footnote)
                     .padding(.vertical)
             }
-            .padding()
         }
+        .task {
+            await viewModel.fetchCoinDetails()
+        }
+        .padding()
     }
 }
+
 
 //#Preview {
 //    CoinDetailsView()
