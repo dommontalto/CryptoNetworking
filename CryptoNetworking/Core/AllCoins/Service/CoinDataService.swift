@@ -13,14 +13,24 @@ class CoinDataService: HTTPDataDownloader {
         guard let endpoint = allCoinsUrlString else {
             throw CoinAPIError.requestFailed(description: "Invalid Endpoint")
         }
+        
         return try await fetchData(as: [Coin].self, endpoint: endpoint)
     }
     
     func fetchCoinDetails(id: String) async throws -> CoinDetails? {
+        if let cached = CoinDetailsCache.shared.get(forKey: id) {
+            print("DEBUG: Got details from cache")
+            return cached
+        }
+        
         guard let endpoint = coinDetailsUrl(id: id) else {
             throw CoinAPIError.requestFailed(description: "Invalid Endpoint")
         }
-        return try await fetchData(as: CoinDetails.self, endpoint: endpoint)
+        
+        let details = try await fetchData(as: CoinDetails.self, endpoint: endpoint)
+        print("DEBUG: Got details from API")
+        CoinDetailsCache.shared.set(details, forKey: id)
+        return details
     }
     
     private var baseUrlComponents: URLComponents {
