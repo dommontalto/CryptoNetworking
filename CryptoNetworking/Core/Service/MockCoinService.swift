@@ -12,6 +12,6 @@ class MockCoinService: CoinServiceProtocol {
     
     func fetchCoinDetails(id: String) async throws -> CoinDetails? {
         let description = Description(text: "Biggest crypto coin ever")
-        return CoinDetails(id: "bitcoin", name: "Bicoin", symbol: "btc", description: description)
+        return CoinDetails(id: "bitcoin", name: "Bicoin", symbol: "btc", description: Description(text: "Biggest crypto coin ever"))
     }
 }
