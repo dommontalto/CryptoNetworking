@@ -9,9 +9,14 @@ import SwiftUI
 
 @main
 struct CryptoNetworkingApp: App {
+//    @StateObject private var viewModel = CoinsViewModel(service: CoinDataService())
+    
     var body: some Scene {
         WindowGroup {
             ContentView(service: CoinDataService())
+            
+//            ContentView()
+//                .environmentObject(viewModel)
         }
     }
 }
