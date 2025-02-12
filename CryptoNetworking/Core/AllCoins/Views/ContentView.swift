@@ -26,6 +26,14 @@ struct ContentView: View {
                         HStack(spacing: 12) {
                             Text("\(coin.marketCapRank)")
                                 .foregroundColor(.gray)
+                            
+                            AsyncImage(url: URL(string: coin.image)) { image in
+                                image
+                                    .resizable()
+                                    .frame(width: 32, height: 32)
+                            } placeholder: {
+                                EmptyView()
+                            }
 
                             VStack(alignment: .leading, spacing: 4) {
                                 Text(coin.name)
@@ -52,6 +60,9 @@ struct ContentView: View {
                     Text(error)
                 }
             }
+        }
+        .task {
+            await viewModel.fetchCoins()
         }
     }
 }

@@ -15,7 +15,6 @@ class CoinsViewModel: ObservableObject {
     
     init(service: CoinServiceProtocol) {
         self.service = service
-        Task { await fetchCoins() }
     }
     
     @MainActor
