@@ -35,6 +35,11 @@ struct ContentView: View {
                                     .font(.footnote)
                             }
                         }
+                        .onAppear {
+                            if coin == viewModel.coins.last {
+                                Task { await viewModel.fetchCoins() }
+                            }
+                        }
                         .font(.footnote)
                     }
                 }

@@ -53,11 +53,6 @@
 			path = CryptoNetworkingTests;
 			sourceTree = "<group>";
 		};
-		5903F2D72D368F0C006799DD /* CryptoNetworkingUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = CryptoNetworkingUITests;
-			sourceTree = "<group>";
-		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,7 +85,6 @@
 			children = (
 				5903F2BC2D368F0A006799DD /* CryptoNetworking */,
 				5903F2CD2D368F0C006799DD /* CryptoNetworkingTests */,
-				5903F2D72D368F0C006799DD /* CryptoNetworkingUITests */,
 				5903F2BB2D368F0A006799DD /* Products */,
 			);
 			sourceTree = "<group>";
@@ -165,9 +159,6 @@
 			);
 			dependencies = (
 				5903F2D62D368F0C006799DD /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				5903F2D72D368F0C006799DD /* CryptoNetworkingUITests */,
 			);
 			name = CryptoNetworkingUITests;
 			packageProductDependencies = (
