@@ -29,6 +29,16 @@
 		5903F2D42D368F0C006799DD /* CryptoNetworkingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CryptoNetworkingUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		599D5F872D5CB6D80008B22A /* Exceptions for "CryptoNetworkingTests" folder in "CryptoNetworking" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				TestData.swift,
+			);
+			target = 5903F2B92D368F0A006799DD /* CryptoNetworking */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		5903F2BC2D368F0A006799DD /* CryptoNetworking */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
@@ -37,6 +47,9 @@
 		};
 		5903F2CD2D368F0C006799DD /* CryptoNetworkingTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				599D5F872D5CB6D80008B22A /* Exceptions for "CryptoNetworkingTests" folder in "CryptoNetworking" target */,
+			);
 			path = CryptoNetworkingTests;
 			sourceTree = "<group>";
 		};
